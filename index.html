@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端开发工程师 · 个人简历页</title>
+    <meta name="description" content="基于简历内容整理的绿色自然风格前端开发工程师个人介绍页" />
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              deepGreen: '#2E7D52',
+              mintGreen: '#E8F5EE',
+              wood: '#F3EBDF',
+              forest: '#1B5E3A'
+            },
+            boxShadow: {
+              soft: '0 18px 45px rgba(46, 125, 82, 0.12)'
+            }
+          }
+        }
+      };
+    </script>
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+      /* 统一桌面端最小宽度，保证页面只在电脑端展示 */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 1024px;
+        background:
+          radial-gradient(circle at top left, rgba(46, 125, 82, 0.08), transparent 26%),
+          linear-gradient(135deg, #f7fcf8 0%, #e8f5ee 100%);
+        color: #234734;
+        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      .desktop-shell {
+        min-width: 1024px;
+      }
+
+      /* 导航栏固定效果 */
+      .nav-shadow {
+        box-shadow: 0 10px 30px rgba(46, 125, 82, 0.08);
+      }
+
+      .section-title {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.4rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 72%;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(46, 125, 82, 0.8), transparent);
+      }
+
+      .soft-panel {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(46, 125, 82, 0.14);
+      }
+
+      .hero-ornament {
+        position: absolute;
+        border-radius: 9999px;
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      /* 卡片悬浮动画 */
+      .card-hover {
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        overflow: hidden;
+      }
+
+      .card-hover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+        pointer-events: none;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 22px 50px rgba(46, 125, 82, 0.18);
+        border-color: rgba(46, 125, 82, 0.25);
+      }
+
+      .card-hover:hover::before {
+        transform: translateX(100%);
+      }
+
+      /* 技术栈进度条加载动画 */
+      .skill-progress {
+        animation: progressGrow 1.2s ease-out forwards;
+      }
+
+      @keyframes progressGrow {
+        from {
+          width: 0;
+        }
+        to {
+          width: var(--target);
+        }
+      }
+
+      /* 自定义淡入动画 */
+      .fade-in {
+        animation: fadeIn 0.8s ease-out both;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-mintGreen text-gray-800">
+    <div class="desktop-shell">
+      <!-- 固定导航栏 -->
+      <header class="fixed top-0 left-0 right-0 z-50 border-b border-emerald-100 bg-white/85 backdrop-blur-xl nav-shadow">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
+          <a href="#home" class="text-xl font-semibold tracking-wide text-deepGreen">
+            <i class="fa-solid fa-seedling mr-2"></i>个人简历页
+          </a>
+          <div class="flex items-center gap-8 text-sm font-medium text-gray-700">
+            <a href="#about" class="transition hover:text-deepGreen">关于我</a>
+            <a href="#experience" class="transition hover:text-deepGreen">经历</a>
+            <a href="#skills" class="transition hover:text-deepGreen">技能</a>
+            <a href="#projects" class="transition hover:text-deepGreen">项目</a>
+            <a href="#contact" class="transition hover:text-deepGreen">联系</a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="home" class="pt-24">
+        <!-- 首屏 Hero 区 -->
+        <section class="relative mx-auto flex max-w-7xl items-center justify-between gap-12 px-8 py-20">
+          <div class="hero-ornament left-0 top-10 h-24 w-24 bg-emerald-100/70"></div>
+          <div class="hero-ornament right-16 top-6 h-32 w-32 border border-emerald-200/70"></div>
+          <div class="hero-ornament bottom-4 right-36 h-20 w-20 bg-wood/80"></div>
+          <div class="max-w-2xl fade-in">
+            <p class="mb-4 inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm text-deepGreen">
+              <i class="fa-solid fa-leaf mr-2"></i>审美驱动 · 交互思考 · 作品表达
+            </p>
+            <h1 class="mb-6 text-5xl font-semibold leading-tight tracking-tight text-forest">
+              用细腻的设计感和清晰的逻辑，把想法变成有辨识度的网页体验。
+            </h1>
+            <p class="mb-8 text-lg leading-8 text-gray-700">
+              我是一个偏向“设计感驱动”的前端开发者，热衷于把信息结构、视觉节奏和情绪氛围一起打磨，让页面既好用，也具备独特的审美气质。
+            </p>
+            <div class="flex gap-4">
+              <a href="#projects" class="rounded-full bg-deepGreen px-6 py-3 font-medium text-white transition hover:bg-forest">
+                查看项目
+              </a>
+              <a href="#contact" class="rounded-full border border-deepGreen px-6 py-3 font-medium text-deepGreen transition hover:bg-emerald-50">
+                联系我
+              </a>
+            </div>
+          </div>
+
+          <div class="card-hover w-[430px] rounded-[28px] border border-emerald-100 bg-wood/90 p-8 shadow-soft">
+            <div class="mb-6 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-deepGreen">个人信息</p>
+                <h2 class="text-2xl font-semibold text-forest">前端开发工程师</h2>
+              </div>
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-deepGreen text-3xl text-white">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="space-y-4 text-sm text-gray-700">
+              <div class="rounded-2xl border border-emerald-100 bg-white/75 p-4">
+                <i class="fa-solid fa-location-dot mr-2 text-deepGreen"></i>
+                所在城市：杭州 · 喜欢在自然与现代之间寻找视觉平衡
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <i class="fa-solid fa-graduation-cap mr-2 text-deepGreen"></i>
+                教育背景：浙江农林大学暨阳学院 · 计算机专业
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <i class="fa-solid fa-briefcase mr-2 text-deepGreen"></i>
+                设计工具：Figma / VS Code / Cursor / ChatGPT
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 关于我 / 简历摘要 -->
+        <section id="about" class="mx-auto max-w-7xl px-8 py-16">
+          <div class="mb-8">
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">About Me</p>
+            <h2 class="section-title text-3xl font-semibold text-forest">关于我</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <article class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-4 text-xl font-semibold text-deepGreen">我的表达方式</h3>
+              <p class="leading-8 text-gray-700">
+                我偏向做“有温度、有节奏、有辨识度”的页面，擅长把功能需求拆解成清晰的结构，再用留白、色彩与动效把内容表达得更有气质。
+              </p>
+            </article>
+            <article class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-4 text-xl font-semibold text-deepGreen">我重视的东西</h3>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <span class="rounded-full bg-mintGreen px-3 py-1 text-sm text-deepGreen">留白感</span>
+                <span class="rounded-full bg-mintGreen px-3 py-1 text-sm text-deepGreen">色彩气质</span>
+                <span class="rounded-full bg-mintGreen px-3 py-1 text-sm text-deepGreen">交互节奏</span>
+                <span class="rounded-full bg-mintGreen px-3 py-1 text-sm text-deepGreen">内容层级</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 审美表达与经历背景 -->
+        <section id="experience" class="mx-auto max-w-7xl px-8 py-16">
+          <div class="mb-8">
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">Experience</p>
+            <h2 class="section-title text-3xl font-semibold text-forest">经历与背景</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <article class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-4 text-xl font-semibold text-deepGreen">实习与项目实践</h3>
+              <div class="space-y-4 text-gray-700">
+                <div class="rounded-2xl bg-mintGreen p-4">
+                  <p class="font-semibold text-forest">前端页面与展示型作品</p>
+                  <p class="mt-2 text-sm">项目落地与学习实践</p>
+                  <p class="mt-2 leading-7">参与过从视觉稿到页面呈现的完整过程，注重细节、节奏与交互逻辑的统一，让作品更有完整感。</p>
+                </div>
+                <div class="rounded-2xl bg-mintGreen p-4">
+                  <p class="font-semibold text-forest">个人创作与作品集搭建</p>
+                  <p class="mt-2 text-sm">持续输出</p>
+                  <p class="mt-2 leading-7">把每一次练习都视为对“结构、气质、可读性”的打磨，让表达更成熟也更有个人辨识度。</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-4 text-xl font-semibold text-deepGreen">教育背景</h3>
+              <div class="space-y-4 text-gray-700">
+                <div class="rounded-2xl bg-wood p-4">
+                  <p class="font-semibold text-forest">浙江农林大学暨阳学院 · 计算机专业</p>
+                  <p class="mt-2 text-sm">2021 - 2025</p>
+                  <p class="mt-2 leading-7">系统学习计算机基础、前端开发与软件设计思维，形成较扎实的专业基础和自我表达能力。</p>
+                </div>
+                <div class="rounded-2xl bg-wood p-4">
+                  <p class="font-semibold text-forest">持续成长</p>
+                  <p class="mt-2 leading-7">不断学习前端框架、视觉设计思维和 AI 辅助开发方式，让创作效率和作品质感同时提升。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 设计思维与审美表达 -->
+        <section class="mx-auto max-w-7xl px-8 py-4">
+          <div class="soft-panel rounded-[32px] p-8 shadow-soft">
+            <div class="grid grid-cols-[1.1fr_0.9fr] gap-8">
+              <div>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">Visual Language</p>
+                <h2 class="section-title mb-4 text-3xl font-semibold text-forest">我的审美表达</h2>
+                <p class="leading-8 text-gray-700">
+                  我相信真正优秀的作品，不只是功能完整，而是能让用户在浏览时自然感受到秩序、舒适和情绪。好的界面，应该像一段轻而有力的对话。
+                </p>
+              </div>
+              <div class="grid grid-cols-3 gap-4">
+                <div class="rounded-2xl border border-emerald-100 bg-mintGreen p-4 text-sm text-gray-700">
+                  <p class="mb-2 font-semibold text-deepGreen">结构感</p>
+                  <p>层级清晰，内容有节奏。</p>
+                </div>
+                <div class="rounded-2xl border border-amber-100 bg-wood p-4 text-sm text-gray-700">
+                  <p class="mb-2 font-semibold text-deepGreen">色彩气质</p>
+                  <p>自然、柔和、具有辨识度。</p>
+                </div>
+                <div class="rounded-2xl bg-mintGreen p-4 text-sm text-gray-700">
+                  <p class="mb-2 font-semibold text-deepGreen">交互节奏</p>
+                  <p>细节流畅，体验轻盈自然。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 技术栈进度条 -->
+        <section id="skills" class="mx-auto max-w-7xl px-8 py-16">
+          <div class="mb-8">
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">Skills</p>
+            <h2 class="section-title text-3xl font-semibold text-forest">技能与能力</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-6 text-xl font-semibold text-deepGreen">前端技术</h3>
+              <div class="space-y-5">
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>HTML / CSS / 页面样式</span>
+                    <span>92%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-deepGreen" style="--target: 92%"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>JavaScript / TypeScript</span>
+                    <span>86%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-deepGreen" style="--target: 86%"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>Tailwind CSS / 交互实现</span>
+                    <span>90%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-deepGreen" style="--target: 90%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-hover rounded-[24px] border border-emerald-100 bg-white p-8 shadow-soft">
+              <h3 class="mb-6 text-xl font-semibold text-deepGreen">协作与思维</h3>
+              <div class="space-y-5">
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>组件化思维</span>
+                    <span>88%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-forest" style="--target: 88%"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>用户体验优化</span>
+                    <span>84%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-forest" style="--target: 84%"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-2 flex justify-between text-sm text-gray-700">
+                    <span>问题排查与协作</span>
+                    <span>82%</span>
+                  </div>
+                  <div class="h-3 overflow-hidden rounded-full bg-mintGreen">
+                    <span class="skill-progress block h-full rounded-full bg-forest" style="--target: 82%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 项目卡片 -->
+        <section id="projects" class="mx-auto max-w-7xl px-8 py-16">
+          <div class="mb-8">
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">Projects</p>
+            <h2 class="section-title text-3xl font-semibold text-forest">项目经验</h2>
+          </div>
+          <div class="grid grid-cols-3 gap-6">
+            <article class="card-hover rounded-3xl border border-emerald-100 bg-white p-7 shadow-soft">
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mintGreen text-xl text-deepGreen">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold text-forest">个人作品集 / 介绍页</h3>
+              <p class="mb-4 leading-7 text-gray-700">
+                从整体气质到细节动效，都尽量让页面呈现出一种自然、清爽且有辨识度的个人风格。
+              </p>
+              <span class="rounded-full bg-wood px-3 py-1 text-sm text-deepGreen">视觉表达 / 交互设计</span>
+            </article>
+
+            <article class="card-hover rounded-3xl border border-emerald-100 bg-white p-7 shadow-soft">
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mintGreen text-xl text-deepGreen">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold text-forest">信息展示与数据页</h3>
+              <p class="mb-4 leading-7 text-gray-700">
+                强调层级清晰、视觉压力适中、信息读取顺畅，让复杂内容也能被轻松理解。
+              </p>
+              <span class="rounded-full bg-wood px-3 py-1 text-sm text-deepGreen">信息架构 / 体验优化</span>
+            </article>
+
+            <article class="card-hover rounded-3xl border border-emerald-100 bg-white p-7 shadow-soft">
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mintGreen text-xl text-deepGreen">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+              <h3 class="mb-3 text-xl font-semibold text-forest">H5 / 活动页与演示页</h3>
+              <p class="mb-4 leading-7 text-gray-700">
+                结合节奏感与视觉氛围，让页面在传播性和美观性之间保持平衡。
+              </p>
+              <span class="rounded-full bg-wood px-3 py-1 text-sm text-deepGreen">节奏感 / 视觉氛围</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section id="contact" class="mx-auto max-w-7xl px-8 py-16">
+          <div class="soft-panel rounded-[32px] p-10 shadow-soft">
+            <div class="mb-8">
+              <p class="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-deepGreen">Contact</p>
+              <h2 class="section-title text-3xl font-semibold text-forest">联系方式</h2>
+            </div>
+            <div class="grid grid-cols-[1.2fr_0.8fr] gap-8">
+                <div class="leading-8 text-gray-700">
+                如果你也喜欢有风格、有气质、并且能够真正传达个人审美的展示页，我很乐意把这里继续打磨成更适合你自己的作品入口。
+              </div>
+              <div class="space-y-4 text-sm text-gray-700">
+                <div class="flex items-center gap-3 rounded-2xl bg-mintGreen p-4">
+                  <i class="fa-solid fa-envelope text-deepGreen"></i>
+                  <span>邮箱：your_email@example.com</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-2xl bg-mintGreen p-4">
+                  <i class="fa-brands fa-github text-deepGreen"></i>
+                  <span>GitHub：github.com/your-name</span>
+                </div>
+                <div class="flex items-center gap-3 rounded-2xl bg-mintGreen p-4">
+                  <i class="fa-brands fa-weixin text-deepGreen"></i>
+                  <span>微信：your_wechat</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- 页脚 -->
+      <footer class="border-t border-emerald-100 bg-white/80 py-6">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-8 text-sm text-gray-600">
+          <p>© 2026 Frontend Resume Page.</p>
+          <p>Designed for a polished personal profile.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
